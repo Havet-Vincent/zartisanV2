@@ -80,7 +80,7 @@ class SecurityController extends AbstractController
             $user->setIsVerified(false);
             $user->setIsReported(false);
 
-            $folder = $foldersUser->isFolder($user->setEmail($request->get('email')));
+            $foldersUser->isFolder($user->setEmail($request->get('email')));
         
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -142,7 +142,7 @@ class SecurityController extends AbstractController
             $user->setIsVerified(false);
             $user->setIsReported(false);
 
-            $folder = $foldersUser->isFolder($user->setEmail($request->get('email')));
+            $foldersUser->isFolder($user->setEmail($request->get('email')));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
