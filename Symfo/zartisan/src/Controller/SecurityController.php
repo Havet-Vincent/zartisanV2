@@ -80,11 +80,11 @@ class SecurityController extends AbstractController
             $user->setIsVerified(false);
             $user->setIsReported(false);
 
+
             $userRole = 'ARTISAN';
             $email = $user->setEmail($request->get('email'));
             $foldersUser->isFolder($email, $userRole);
 
-            //$foldersUser->isFolder($user->setEmail($request->get('email')), $userRole);
         
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -100,7 +100,8 @@ class SecurityController extends AbstractController
             );
             
             // normaly is possible to send mail automatictly to artisan but desactivated for demo
-            // cause of not send mail to real personne
+            // cause of not send mail to real personne            $userRole = 'USER';
+            //$foldersUser->isFolder($userEmail, $userRole);  // verification if folder exist
             // TODO
             // $this->mailController->sendMailValidation($request);
 
