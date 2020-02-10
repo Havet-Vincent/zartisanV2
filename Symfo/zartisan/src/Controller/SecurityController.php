@@ -75,12 +75,16 @@ class SecurityController extends AbstractController
             $user->setRoles(["ROLE_ARTISAN"]);
             //$user->setRoles(["ROLE_UNDEFINED_ARTISAN"]);
             $user->setIsConfirmMail(false);
-            $user->setPicture("artisan.png"); 
+            $user->setPicture("assets/images/default/craftsmen-1020156_640.jpg"); 
             $user->setIsStatus(true);
             $user->setIsVerified(false);
             $user->setIsReported(false);
 
-            $foldersUser->isFolder($user->setEmail($request->get('email')));
+
+            $userRole = 'ARTISAN';
+            $email = $user->setEmail($request->get('email'));
+            $foldersUser->isFolder($email, $userRole);
+
         
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -96,7 +100,8 @@ class SecurityController extends AbstractController
             );
             
             // normaly is possible to send mail automatictly to artisan but desactivated for demo
-            // cause of not send mail to real personne
+            // cause of not send mail to real personne            $userRole = 'USER';
+            //$foldersUser->isFolder($userEmail, $userRole);  // verification if folder exist
             // TODO
             // $this->mailController->sendMailValidation($request);
 
@@ -135,7 +140,7 @@ class SecurityController extends AbstractController
                 )
             );
             $user->setIsConfirmMail(false);
-            $user->setPicture("user6.png"); 
+            $user->setPicture("assets/images/default/user-1633249_640.png"); 
             $user->setRoles(["ROLE_UNDEFINED_USER"]);
             $user->setIsStatus(true);
             $user->setFirstname("unknown");
