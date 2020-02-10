@@ -109,7 +109,7 @@ class SecurityController extends AbstractController
      * @Route("/register/user", name="app_register_user")
      */
     public function registerUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SerializerInterface $serializer, 
-    UserRepository $userRepository): Response
+    UserRepository $userRepository, FoldersUser $foldersUser): Response
     {
         if ($request->get('email')) {
 
@@ -141,6 +141,8 @@ class SecurityController extends AbstractController
             $user->setFirstname("unknown");
             $user->setIsVerified(false);
             $user->setIsReported(false);
+
+            $folder = $foldersUser->isFolder($user->setEmail($request->get('email')));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
