@@ -7,6 +7,7 @@ use App\Controller\MailController;
 use App\Entity\User;
 use App\Manager\SecurityManager;
 use App\Repository\UserRepository;
+use App\Services\FoldersUser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,12 +34,13 @@ class SecurityController extends AbstractController
      * @Route("/register/artisan", name="app_register_artisan")
      */
     public function registerArtisan(Request $request, UserPasswordEncoderInterface $passwordEncoder, 
-    UserRepository $userRepository): Response
+    UserRepository $userRepository, FoldersUser $foldersUser): Response
     {
         if ($request->get('email')) {
 
             // Look if exist email
             $error = $this->securityManager->securityEmail($request->get('email'));
+
             if(isset($error)){
                 return $this->json(['error' => $error], 409);
             }
@@ -77,6 +79,8 @@ class SecurityController extends AbstractController
             $user->setIsStatus(true);
             $user->setIsVerified(false);
             $user->setIsReported(false);
+
+            $folder = $foldersUser->isFolder($user->setEmail($request->get('email')));
         
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
