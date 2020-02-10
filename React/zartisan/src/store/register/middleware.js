@@ -91,7 +91,7 @@ export default store => next => action => {
         password: action.password,
         siret: action.siret
       };
-      // console.log(data);
+      console.log(data);
 
       return axios({
         method: "post",
@@ -101,12 +101,12 @@ export default store => next => action => {
         .then(response => {
           // console.log(response);
           if (response.status === 200) {
-            //console.log('inscription')
+            console.log('inscription')
           }
         })
         .catch(function(error) {
           // handle error
-          // console.log(error);
+          console.log(error);
         })
         .finally(function() {
           // always executed
