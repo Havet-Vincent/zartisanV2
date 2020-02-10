@@ -75,12 +75,16 @@ class SecurityController extends AbstractController
             $user->setRoles(["ROLE_ARTISAN"]);
             //$user->setRoles(["ROLE_UNDEFINED_ARTISAN"]);
             $user->setIsConfirmMail(false);
-            $user->setPicture("artisan.png"); 
+            $user->setPicture("assets/images/default/craftsmen-1020156_640.jpg"); 
             $user->setIsStatus(true);
             $user->setIsVerified(false);
             $user->setIsReported(false);
 
-            $folder = $foldersUser->isFolder($user->setEmail($request->get('email')));
+            $userRole = 'ARTISAN';
+            $email = $user->setEmail($request->get('email'));
+            $foldersUser->isFolder($email, $userRole);
+
+            //$foldersUser->isFolder($user->setEmail($request->get('email')), $userRole);
         
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -135,14 +139,14 @@ class SecurityController extends AbstractController
                 )
             );
             $user->setIsConfirmMail(false);
-            $user->setPicture("user6.png"); 
+            $user->setPicture("assets/images/default/user-1633249_640.png"); 
             $user->setRoles(["ROLE_UNDEFINED_USER"]);
             $user->setIsStatus(true);
             $user->setFirstname("unknown");
             $user->setIsVerified(false);
             $user->setIsReported(false);
 
-            $folder = $foldersUser->isFolder($user->setEmail($request->get('email')));
+            $foldersUser->isFolder($user->setEmail($request->get('email')));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

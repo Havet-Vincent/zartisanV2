@@ -50,7 +50,8 @@ class ApiArtisanController extends AbstractController
             $user = $userRepository->isFoundMail($userEmail);
 
             // verify if folder exist
-            $folder = $foldersUser->isFolder($userEmail);  // verification if folder exist
+            $userRole = 'ARTISAN';
+            $foldersUser->isFolder($userEmail, $userRole);  // verification if folder exist
 
             // if picture is uploaded
             $picture64 = ($request->get('picture'));
