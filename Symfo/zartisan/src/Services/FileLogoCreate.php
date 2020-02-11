@@ -2,9 +2,6 @@
 
 namespace App\Services;
 
-use App\Repository\UserRepository;
-use Symfony\Component\HttpFoundation\Request;
-
 class FileLogoCreate
 {
 

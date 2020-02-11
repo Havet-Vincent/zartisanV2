@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
+use App\Services\FoldersUser;
 use App\Manager\SecurityManager;
-use App\Repository\AdviceRepository;
 use App\Repository\RateRepository;
 use App\Repository\UserRepository;
 use App\Services\FileLogoCreate;
-use App\Services\FoldersUser;
+use App\Services\FileTablePictures;
+use App\Repository\AdviceRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use FileLogoCreate as GlobalFileLogoCreate;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -30,6 +30,7 @@ class ApiArtisanController extends AbstractController
         EntityManagerInterface $em,
         FoldersUser $foldersUser,
         FileLogoCreate $fileLogoCreate,
+        FileTablePictures $fileTablePictures,
         SecurityManager $securityManager
     ) {
         if ($request->get('email')) {
@@ -59,9 +60,20 @@ class ApiArtisanController extends AbstractController
             if ($image != "assets") {
                 $file = $fileLogoCreate->createPicture($picture64, $userEmail);   // inject avatar in file logo
                 $user->setPicture($file);
-            }
+            } 
+
+            // // if pictureFolder is uploaded
+            // $pictureFolder64 = ($request->get('pictureFolder'));
+            // //dd($pictureFolder64);
+            // $image = substr("$pictureFolder64[1]", 0, 6);
+            // if ($image != "assets") {
+            //     $file = $fileTablePictures->createTablePictures($pictureFolder64, $userEmail);   // inject pictures in file compagny
+            //     $user->setPictureFolder($file);
+            // }
+
 
             $user->setCompanyDescription($request->get('companyDescription'));
+            $user->setPhone($request->get('phone'));
 
             // TODO : Add this in register after set company
             // $user->setPictureFolder($user->getCompany());
