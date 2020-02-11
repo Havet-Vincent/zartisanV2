@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
 /**
- * @Route("api/v1/user", name="api_user_")
+ * @Route("v1/user", name="api_user_")
  */
 class ApiUserController extends AbstractController
 {
@@ -43,12 +43,13 @@ class ApiUserController extends AbstractController
 
             // verify if  email is in the BDD
             $userEmail = $request->get('email');
+            //dd($userEmail);
 
             // if email don't find
             if (!$userRepository->isFoundMail($request->get('email'))) {
                 return $this->json(['error' => 'Email not exist'], 404);
             }
-            $user = $userRepository->isFoundMail($request->get($userEmail));
+            $user = $userRepository->isFoundMail($userEmail);
 
             // verify if folder existgit statu
             $foldersUser->isFolder($userEmail);  // verification if folder exist
