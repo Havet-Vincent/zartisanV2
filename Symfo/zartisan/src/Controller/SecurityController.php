@@ -75,7 +75,7 @@ class SecurityController extends AbstractController
             $user->setRoles(["ROLE_ARTISAN"]);
             //$user->setRoles(["ROLE_UNDEFINED_ARTISAN"]);
             $user->setIsConfirmMail(false);
-            $user->setPicture("assets/images/default/craftsmen-1020156_640.jpg"); 
+            $user->setPicture("assets/images_default/craftsmen-1020156_640.jpg"); 
             $user->setIsStatus(true);
             $user->setIsVerified(false);
             $user->setIsReported(false);
@@ -140,7 +140,7 @@ class SecurityController extends AbstractController
                 )
             );
             $user->setIsConfirmMail(false);
-            $user->setPicture("assets/images/default/user-1633249_640.png"); 
+            $user->setPicture("assets/images_default/user-1633249_640.png"); 
             $user->setRoles(["ROLE_UNDEFINED_USER"]);
             $user->setIsStatus(true);
             $user->setFirstname("unknown");
