@@ -1,7 +1,7 @@
 /**
  * Imports of dependencies
  */
-import axios from "axios";
+import axios from 'axios';
 import cookies from "js-cookie";
 /**
  * Local imports
