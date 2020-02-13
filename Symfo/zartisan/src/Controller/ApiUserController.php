@@ -51,7 +51,7 @@ class ApiUserController extends AbstractController
             }
             $user = $userRepository->isFoundMail($userEmail);
 
-            // verify if folder existgit statu
+            // verify if folder exist
             $foldersUser->isFolder($userEmail);  // verification if folder exist
 
             // if picture is uploaded
