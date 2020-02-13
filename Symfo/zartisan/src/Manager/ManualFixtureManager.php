@@ -103,11 +103,12 @@ class ManualFixtureManager
 
         if (in_array("ROLE_ARTISAN", $user->getRoles())) {  
             $user->setSiret($this->siretArray[$index]);
+            $user->setPicture("assets/images_default/craftsmen-1020156_640.jpg");
         }
         $user->setEmail($this->emailArray[$index]);
         $user->setPassword(
             $this->passwordEncoder->encodePassword(
-                $user,
+                $user,msn.com
                 '123456'
             )
         );
@@ -121,6 +122,7 @@ class ManualFixtureManager
 
         if (in_array("ROLE_ARTISAN", $user->getRoles())) {
             $user = $this->apiSireneManager->setSireneDataApi($this->siretArray[$index]);
+            $user->setPicture("assets/images_default/craftsmen-1020156_640.jpg");
         }
         $user->setPhone('0344566360');
         return $user;
