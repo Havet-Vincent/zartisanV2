@@ -54,32 +54,49 @@ class ApiArtisanController extends AbstractController
             $userRole = 'ARTISAN';
             $foldersUser->isFolder($userEmail, $userRole);  // verification if folder exist
 
-            // if picture is uploaded
+            // TODO if picture is uploaded
             $picture64 = ($request->get('picture'));
             $image = substr("$picture64", 0, 6);
             if ($image != "assets") {
                 $file = $fileLogoCreate->createPicture($picture64, $userEmail);   // inject avatar in file logo
+                if ($file == 409) {
+                    return $this->json(['error' => 'Vous devez uploader un fichier de type png, jpg, jpeg'], 409);
+                }
                 $user->setPicture($file);
             } 
 
-            // // if pictureFolder is uploaded
-            // $pictureFolder64 = ($request->get('pictureFolder'));
-            // //dd($pictureFolder64);
-            // $image = substr("$pictureFolder64[1]", 0, 6);
-            // if ($image != "assets") {
-            //     $file = $fileTablePictures->createTablePictures($pictureFolder64, $userEmail);   // inject pictures in file compagny
-            //     $user->setPictureFolder($file);
-            // }
+            // TODO if pictureFolder is uploaded 
+            $pictureFolder64 = ($request->get('pictureFolder'));
+            $counter = count($pictureFolder64);
 
+            if ($counter != 0) {
+                // TODO verify if old pictures
+                $controlOld = $fileTablePictures->controlPicturesOld($pictureFolder64); 
+                // if new pictures uploaded
+                if ($controlOld == 0) {
 
+                    // TODO verify if only new pictures
+                    $controlNew = $fileTablePictures->controlPicturesNew($pictureFolder64); 
+                    
+                    if($controlNew) {
+                        // inject pictures in file compagny
+                        $file = $fileTablePictures->createTableNewPictures($pictureFolder64, $userEmail);   
+                        if ($file == 409) {
+                            return $this->json(['error' => 'Vous devez uploader un fichier de type png, jpg, jpeg'], 409);
+                        }
+                    }else {
+                        // inject pictures in file compagny
+                        $file = $fileTablePictures->createTableMixPictures($pictureFolder64, $userEmail);   
+                        if ($file == 409) {
+                            return $this->json(['error' => 'Vous devez uploader un fichier de type png, jpg, jpeg'], 409);
+                        }
+                    }
+                    $user->setPictureFolder($file);
+                }   
+            }
+        
             $user->setCompanyDescription($request->get('companyDescription'));
             $user->setPhone($request->get('phone'));
-
-            // TODO : Add this in register after set company
-            // $user->setPictureFolder($user->getCompany());
-            // if ($request->get('picture')) {
-            //     $user->setPicture($file);
-            // }
 
             $user->setUpdatedAt(new \DateTime());
 
