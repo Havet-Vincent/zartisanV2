@@ -62,39 +62,44 @@ class ApiArtisanController extends AbstractController
                 if ($file == 409) {
                     return $this->json(['error' => 'Vous devez uploader un fichier de type png, jpg, jpeg'], 409);
                 }
+                
                 $user->setPicture($file);
             } 
 
             // TODO if pictureFolder is uploaded 
             $pictureFolder64 = ($request->get('pictureFolder'));
             $counter = count($pictureFolder64);
+            
 
             if ($counter != 0) {
                 // TODO verify if old pictures
-                $controlOld = $fileTablePictures->controlPicturesOld($pictureFolder64); 
-                // if new pictures uploaded
-                if ($controlOld == 0) {
+                $controlOld = $fileTablePictures->controlPicturesOld($pictureFolder64);
+                //dd('controlold', $controlOld, 'counter', $counter);
 
-                    // TODO verify if only new pictures
-                    $controlNew = $fileTablePictures->controlPicturesNew($pictureFolder64); 
-                    
-                    if($controlNew) {
-                        // inject pictures in file compagny
-                        $file = $fileTablePictures->createTableNewPictures($pictureFolder64, $userEmail);   
+                // TODO if no pictures uploaded
+                if ($controlOld != $counter) {
+                
+                    // TODO if new pictures uploaded
+                    if ($controlOld == 0) {
+                            $file = $fileTablePictures->createTableNewPictures($pictureFolder64, $userEmail);
+                            if ($file == 409) {
+                                return $this->json(['error' => 'Vous devez uploader un fichier de type png, jpg, jpeg'], 409);
+                            }
+                    } //($controlOld == 0)
+                    else {
+                        $file = $fileTablePictures->createTableMixPictures($pictureFolder64, $userEmail);
                         if ($file == 409) {
                             return $this->json(['error' => 'Vous devez uploader un fichier de type png, jpg, jpeg'], 409);
-                        }
-                    }else {
-                        // inject pictures in file compagny
-                        $file = $fileTablePictures->createTableMixPictures($pictureFolder64, $userEmail);   
-                        if ($file == 409) {
-                            return $this->json(['error' => 'Vous devez uploader un fichier de type png, jpg, jpeg'], 409);
-                        }
+                        } 
+                        if ($file == 501) {
+                            return $this->json(['error' => 'Not Implemented'], 501);
+                        }      
                     }
                     $user->setPictureFolder($file);
-                }   
-            }
-        
+                } //($controlOld != $counter)
+            } //($counter != 0)
+
+
             $user->setCompanyDescription($request->get('companyDescription'));
             $user->setPhone($request->get('phone'));
 
