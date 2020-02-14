@@ -108,7 +108,7 @@ class ManualFixtureManager
         $user->setEmail($this->emailArray[$index]);
         $user->setPassword(
             $this->passwordEncoder->encodePassword(
-                $user,msn.com
+                $user,
                 '123456'
             )
         );
