@@ -11,6 +11,7 @@ import { SEND_REGISTER_USER } from 'src/store/register/actions';
 import { SEND_REGISTER_ARTISAN } from 'src/store/register/actions';
 import { SEND_LOGIN } from 'src/store/register/actions';
 import { CONNECT } from 'src/store/register/actions';
+import { validRegister } from 'src/store/register/actions';
 /**
  * NAME SERVER
  */
@@ -60,7 +61,7 @@ export default (store) => (next) => (action) => {
 				email: action.email,
 				password: action.password
 			};
-			// console.log(data);
+			console.log(data);
 
 			return axios({
 				method: 'post',
@@ -70,12 +71,13 @@ export default (store) => (next) => (action) => {
 				.then((response) => {
 					// console.log(response);
 					if (response.status === 200) {
-						//console.log('inscription')
+						console.log('inscription');
+						store.dispatch(validRegister());
 					}
 				})
 				.catch(function(error) {
 					// handle error
-					// console.log(error);
+					console.log(error);
 				})
 				.finally(function() {
 					// always executed
@@ -102,6 +104,7 @@ export default (store) => (next) => (action) => {
 					// console.log(response);
 					if (response.status === 200) {
 						console.log('inscription');
+						store.dispatch(validRegister());
 					}
 				})
 				.catch(function(error) {

@@ -59,7 +59,7 @@ export default (store) => (next) => (action) => {
 					companyDescription: action.description,
 					picture: action.pictureAvatar,
 					phone: action.phone,
-					pictureGalery: action.pictureGalery
+					pictureFolder: action.pictureGalery
 				}
 			})
 				.then((response) => {
@@ -70,7 +70,7 @@ export default (store) => (next) => (action) => {
 				})
 				.catch(function(error) {
 					// handle error
-					//console.log(error);
+					console.log(error);
 				})
 				.finally(function() {
 					// always executed
