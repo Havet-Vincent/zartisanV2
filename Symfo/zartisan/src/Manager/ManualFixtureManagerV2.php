@@ -124,6 +124,40 @@ class ManualFixtureManagerV2
         $this->userRepository = $userRepository;
     }
 
+    
+    public function setFixtureAdvice(){
+        $author = $this->userRepository->findUser();
+        $pro =  $this->userRepository->findArtisan();
+
+        shuffle($author);
+        shuffle($pro);
+        $advice = new Advice();
+        $advice->setBody($this->msgArray[random_int(0,7)]);
+        $advice->setIsStatus(1);
+        $advice->setIsReported(0);
+        $advice->setUserAuthor($author[0]);
+        $advice->setUserPro($pro[0]);
+        return $advice;
+    }
+
+    public function load()
+    {
+        // Create 60 users (need existing siret and mail & unique)
+        for($i=0;$i<= 60;$i++){
+            $user = $this->setFixtureUser($i);
+            $this->em->persist($user);
+            $this->em->flush();
+            if($i > 2){
+                //$rate = $this->setFixtureRate();
+                //$this->em->persist($rate);
+                //$this->em->flush();
+                $advice = $this->setFixtureAdvice();
+                $this->em->persist($advice);
+                $this->em->flush();
+            }
+        }
+    }
+
     public function setFixtureUser($index){
         $user = new User();
         
@@ -159,6 +193,7 @@ class ManualFixtureManagerV2
                 '123456'
             )
         );
+        
         if (in_array("ROLE_USER", $user->getRoles())) {
             //$user->setPicture("user".random_int(1,6).".png");
             $user->setPicture("assets/images_default/user-1633249_640.png"); 
@@ -192,39 +227,6 @@ class ManualFixtureManagerV2
         $rate->setUserAuthor($author[0]);
         $rate->setUserPro($pro[0]);
         return $rate;
-    }
-
-    public function setFixtureAdvice(){
-        $author = $this->userRepository->findUser();
-        $pro =  $this->userRepository->findArtisan();
-
-        shuffle($author);
-        shuffle($pro);
-        $advice = new Advice();
-        $advice->setBody($this->msgArray[random_int(0,7)]);
-        $advice->setIsStatus(1);
-        $advice->setIsReported(0);
-        $advice->setUserAuthor($author[0]);
-        $advice->setUserPro($pro[0]);
-        return $advice;
-    }
-
-    public function load()
-    {
-        // Create 60 users (need existing siret and mail & unique)
-        for($i=0;$i<= 60;$i++){
-            $user = $this->setFixtureUser($i);
-            $this->em->persist($user);
-            $this->em->flush();
-            if($i > 2){
-                //$rate = $this->setFixtureRate();
-                //$this->em->persist($rate);
-                //$this->em->flush();
-                $advice = $this->setFixtureAdvice();
-                $this->em->persist($advice);
-                $this->em->flush();
-            }
-        }
     }
 
 }
