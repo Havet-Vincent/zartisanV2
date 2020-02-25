@@ -121,6 +121,7 @@ class ApiUserController extends AbstractController
             // si user existe on modifie la base de données
             if ($user != null) {
                 $user->setIsStatus(false);
+                $user->setIsConfirmMail(false);
                 $em->flush();
                 return $this->json(['success' => 'utilisatuer disable'], 200);
             } else {

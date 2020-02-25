@@ -39,25 +39,6 @@ class FileTablePictures
     $this->file = $file;
   }
 
-
-  // /**
-  //  * @param string $picture64
-  //  * @return int $cpt
-  //  *
-  //  * verify if only new pictures
-  //  */
-  // public function controlPicturesNew(array $picture64): int
-  // {
-  //     $cpt = 0;
-  //     foreach ($picture64 as $key => $picture) {
-  //         $image = substr("$picture64[$key]", 0, 6);
-  //         if ($image != "assets") {
-  //             $cpt++;
-  //         }
-  //     }
-  //     return $cpt;
-  // }
-
   /**
    * @param string $picture64
    * @return int $cpt
@@ -83,12 +64,15 @@ class FileTablePictures
   public function createTableMixPictures(array $picture64, string $userEmail)
   {
 
+    if(is_dir($this->dirTemp)) {
+      array_map('unlink', glob($this->dirTemp . "/*.*"));
+      rmdir($this->dirTemp);
+    }
+    
     $this->path = "assets/images/" . $userEmail . '/compagny/';           // definit chemin du dossier
     $this->dirCompany = "assets/images/" . $userEmail . '/compagny';
     mkdir($this->dirTemp);
     $this->pathTemp  = $this->dirTemp . "/";
-
-    //$this->pathTemp  = "assets/images/temporary/";
 
     // TODO verify if old picture or new picture
     foreach ($picture64 as $key => $picture) {
@@ -134,6 +118,8 @@ class FileTablePictures
     if($this->custom_copy($this->dirTemp, $this->dirCompany)) {
       array_map('unlink', glob($this->pathTemp . "/*.*"));
       rmdir($this->pathTemp);
+      array_map('unlink', glob($this->dirTemp . "/*.*"));
+      rmdir($this->dirTemp);
     } 
     return $this->tab;
     //dd('stop2');
