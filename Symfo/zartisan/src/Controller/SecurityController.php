@@ -70,7 +70,7 @@ class SecurityController extends AbstractController
                 )
             );
             $user->setSiret($request->get('siret'));
-S
+
             // TODO Add undefined role artisan if mail not validate
             //$user->setRoles(["ROLE_ARTISAN"]);
             $user->setRoles(["ROLE_UNDEFINED_ARTISAN"]);
