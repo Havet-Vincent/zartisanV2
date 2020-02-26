@@ -2,9 +2,9 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use App\Exceptions\EmailNotVerifiedException;
 use App\Exceptions\StatusNotEnableException;
-use App\Entity\User;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
