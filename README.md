@@ -19,6 +19,6 @@
 * Swift Mailer
 
 ### Add in V2
-* Creation image default for new  user in BDD 
-* Creation folder and files for user in BDD and folder images
-* Verification if email verified and status enable for login
+* Add url default image for new  user in BDD. 
+* Creation folder user and files images for user and add url in BDD.
+* Verification if email verified and status enable for login.
