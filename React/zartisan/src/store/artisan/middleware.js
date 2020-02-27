@@ -1,3 +1,4 @@
+import cookies from 'js-cookie';
 import { ARTISAN_DATA } from 'src/store/artisan/actions';
 import { ARTISAN_EDIT } from 'src/store/artisan/actions';
 import { artisanInfo } from 'src/store/artisan/actions';
@@ -13,14 +14,16 @@ export default (store) => (next) => (action) => {
 	switch (action.type) {
 		case ARTISAN_DATA: {
 			//console.log('middleware artisan');
-			//console.log(action.id, action.email);
+      //console.log(action.id, action.email);
+      let token = cookies.get('TOKEN');
 
 			return axios({
 				method: 'post',
-				url: `${NAME_SERVER}/v1/artisan/single`,
+				url: `${NAME_SERVER}/api/v1/artisan/single`,
 				data: {
 					email: action.email
-				}
+        },
+        headers: { Authorization: `Bearer ${token}` }
 			})
 				.then((response) => {
 					//console.log(response);
@@ -49,18 +52,20 @@ export default (store) => (next) => (action) => {
 			// 	action.pictureAvatar,
 			// 	action.pictureGalery,
 			// 	action.phone
-			// );
+      // );
+      let token = cookies.get('TOKEN');
 
 			return axios({
 				method: 'post',
-				url: `${NAME_SERVER}/v1/artisan/edit`,
+				url: `${NAME_SERVER}/api/v1/artisan/edit`,
 				data: {
 					email: action.email,
 					companyDescription: action.description,
 					picture: action.pictureAvatar,
 					phone: action.phone,
 					pictureFolder: action.pictureGalery
-				}
+        },
+        headers: { Authorization: `Bearer ${token}` }
 			})
 				.then((response) => {
 					//console.log(response);
