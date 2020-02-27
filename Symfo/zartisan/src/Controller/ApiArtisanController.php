@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("v1/artisan", name="api_artisan_")
+ * @Route("api/v1/artisan", name="api_artisan_")
  */
 class ApiArtisanController extends AbstractController
 {
