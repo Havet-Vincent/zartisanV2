@@ -17,7 +17,7 @@ export default (store) => (next) => (action) => {
       let token = cookies.get('TOKEN');
 			return axios({
 				method: 'post',
-				url: `${NAME_SERVER}/api/v1/artisan/recherche`,
+				url: `${NAME_SERVER}/v1/artisan/recherche`,
 				data: {
 					idJob: action.job,
 					nameRegion: action.region

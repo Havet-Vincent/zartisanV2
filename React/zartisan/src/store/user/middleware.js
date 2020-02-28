@@ -39,8 +39,9 @@ export default (store) => (next) => (action) => {
 				});
 		}
 		case EDIT_USER: {
-			console.log('middleware edit', action.data.mail);
+      console.log('middleware edit', action.data.mail);
       let token = cookies.get('TOKEN');
+
 			return axios({
 				method: 'post',
 				url: `${NAME_SERVER}/api/v1/user/edit`,

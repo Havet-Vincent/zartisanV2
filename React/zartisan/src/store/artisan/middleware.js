@@ -19,7 +19,7 @@ export default (store) => (next) => (action) => {
 
 			return axios({
 				method: 'post',
-				url: `${NAME_SERVER}/api/v1/artisan/single`,
+				url: `${NAME_SERVER}/v1/artisan/single`,
 				data: {
 					email: action.email
         },
