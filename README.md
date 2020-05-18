@@ -15,7 +15,7 @@
 
 #### &middot; Live View : https://zartisan.yj.fr
 
-#### &middot; Présentation du projet (Vidéo démo Apothéose [O'clock](https://oclock.io/) Vortex 20/12/2019)
+#### &middot; Presentation of the project (Apotheosis [O'clock](https://oclock.io/) Vortex 12/20/2019)
 
 [![](docs/screenshot.png)](https://youtu.be/J8smkGfz9OY?t=4867)
 
