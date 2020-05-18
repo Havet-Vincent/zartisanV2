@@ -19,7 +19,7 @@
 
 [![](docs/screenshot.png)](https://youtu.be/J8smkGfz9OY?t=4867)
 
-__Réalisation suivant méthodologie SCRUM :__ 4 sprints.
+__SCRUM methodology :__ 4 sprints.
 
 ### Technology Front-End
 
