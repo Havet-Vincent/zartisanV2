@@ -15,19 +15,19 @@
 
 #### &middot; Live View : https://zartisan.yj.fr
 
-#### &middot; Présentation du projet (Vidéo démo Apothéose [O'clock](https://oclock.io/) Vortex 04/05/2020)
+#### &middot; Presentation of the project (Apotheosis demo video [O'clock](https://oclock.io/) Vortex 12/20/2019)
 
 [![](docs/screenshot.png)](https://youtu.be/J8smkGfz9OY?t=4867)
 
-__Réalisation suivant méthodologie SCRUM :__ 4 sprints.
+__SCRUM methodology :__ 4 sprints.
 
-### Technology used on the front side
+### Technology Front-End
 
 * React
 * Redux
 * Ant Design
 
-### Technology used on the back side
+### Technology Back-End
 
 * Symfony 4.3
 * composer
