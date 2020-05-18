@@ -17,7 +17,7 @@
 
 #### &middot; Présentation du projet (Vidéo démo Apothéose [O'clock](https://oclock.io/) Vortex 04/05/2020)
 
-[![](docs/screen.png)](https://youtu.be/J8smkGfz9OY?t=4867)
+[![](docs/screenshot.png)](https://youtu.be/J8smkGfz9OY?t=4867)
 
 __Réalisation suivant méthodologie SCRUM :__ 4 sprints.
 
