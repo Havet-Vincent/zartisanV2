@@ -1,0 +1,71 @@
+easy_admin:
+    formats:
+        date: 'd/m/Y H:i:s'
+    site_name: 'Zartisan Admin'
+    disabled_actions: ['new','delete']
+    design:
+        brand_color: '#F00'
+        menu: 
+            - {entity: 'Utilisateurs', icon: 'user'}
+            - {entity: 'Metiers', icon: 'edit'}
+            - {entity: 'Categories', icon: 'edit'}
+            - {entity: 'Avis', icon: 'edit'}
+            - {entity: 'Notes', icon: 'edit'}
+            - {entity: 'Api', icon: 'file'}
+    entities:
+        Utilisateurs:
+            class: App\Entity\User
+            list:
+                actions: ['-edit']
+                fields:
+                    - id
+                    - {property: 'nickname', label: 'Pseudo'}
+                    - email
+                    - {property: 'isConfirmMail', label: 'Confirmation de l email'}
+                    - {property: 'isStatus', label: 'Status'}
+                    - {property: 'isReported', label: 'Signalement'}
+                    - {property: 'roles', type: 'array', type_options: { expanded: true, multiple: false, choices: { 'Administrateur': 'ROLE_ADMIN', 'Particulier': 'ROLE_USER', 'Artisan': 'ROLE_ARTISAN' } }}
+        Metiers:
+            class: App\Entity\Job
+            list:
+                actions: ['-edit']
+                fields:
+                    - id
+                    - {property: 'name', label: 'Nom'}
+                    - {property: 'createdAt', label: 'Date de création'}
+                    - {property: 'updatedAt', label: 'Dernière mise à jour'}
+        Categories:
+            class: App\Entity\Category
+            list:
+                actions: ['-edit']
+                fields:
+                    - id
+                    - {property: 'name', label: 'Nom'}
+                    - {property: 'createdAt', label: 'Date de création'}
+                    - {property: 'updatedAt', label: 'Dernière mise à jour'}
+        Avis :
+            class: App\Entity\Advice
+            list:
+                actions: ['-edit']
+                fields:
+                    - id
+                    - {property: 'body', label: 'Contenu'}
+                    - {property: 'isStatus', label: 'Status'}
+                    - {property: 'isReported', label: 'Signalement'}
+        Notes:
+            class: App\Entity\Rate
+            list:
+                actions: ['-edit']
+                fields:
+                    - id
+                    - {property: 'value', label: 'Note'}
+        Api:
+            class: App\Entity\Api
+            list:
+                fields:
+                    - id
+                    - {property: 'name', label: 'Nom de l Api'}
+                    - {property: 'apiKey', label: 'Clé d authentification'}
+                actions:
+                    - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+                    - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}

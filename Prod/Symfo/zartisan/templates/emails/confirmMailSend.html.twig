@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <div><h2>Bienvenue</h2></div>
+            
+            <div><p>Afin de valider l'email lié à votre compte, <a href="{{baseUrl}}?token={{token}}&use={{use}}"> cliquez ici</a></p></div>
+            <div><p>Attention ce lien n'est valable que durant les <strong>3 jours </strong> suivant sa création</p></div>
+        {% endblock %}
+    </body>
+</html>
+

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Z'artisan : Administration{% endblock %}
+
+{% block body %}
+
+<form method="post" id="form_login">
+    <div class="login">
+        <label for="inputEmail"></label>
+        <input class="bouttonLog" type="email" value="{{ last_username }}" name="email" id="Email" class="form-control" 
+            placeholder="Email" required autofocus> 
+        <label for="inputPassword"></label>
+        <input class="bouttonLog" type="password" name="password" id="inputPassword" class="form-control" 
+            placeholder="password" required>
+        <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}"> 
+        <input id="buttonslog" type="submit" value="Sign In">
+    </div>
+    <div class="shadow"></div>
+</form>
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('assets/css/form_login.css') }}">
+{% endblock %}
+{% block javascripts %}
+
+<script src="https://zartisan.yj.fr/vendors.js"></script>
+<script src="https://zartisan.yj.fr/app.js"></script>
+{% endblock %}
+
