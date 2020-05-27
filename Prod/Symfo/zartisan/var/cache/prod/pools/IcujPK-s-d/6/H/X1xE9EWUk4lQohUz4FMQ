@@ -1,0 +1,53 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Symfony\\Component\\Serializer\\Mapping\\ClassMetadata'] ?? Registry::p('Symfony\\Component\\Serializer\\Mapping\\ClassMetadata')),
+        clone ($p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'] ?? Registry::p('Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata')),
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Rate',
+                'id',
+                'value',
+                'createdAt',
+                'updatedAt',
+                'userAuthor',
+                'userPro',
+            ],
+            'attributesMetadata' => [
+                [
+                    'id' => $o[1],
+                    'value' => $o[2],
+                    'createdAt' => $o[3],
+                    'updatedAt' => $o[4],
+                    'userAuthor' => $o[5],
+                    'userPro' => $o[6],
+                ],
+            ],
+            'groups' => [
+                2 => [
+                    'user_artisan_single',
+                    'rate_value',
+                ],
+                [
+                    'user_artisan_single',
+                ],
+                [
+                    'user_artisan_single',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

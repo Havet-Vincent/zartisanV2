@@ -1,0 +1,92 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+        clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+        clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+    ],
+    null,
+    [
+        'Doctrine\\ORM\\Query\\ParserResult' => [
+            '_sqlExecutor' => [
+                $o[1],
+            ],
+            '_resultSetMapping' => [
+                $o[2],
+            ],
+            '_parameterMappings' => [
+                [
+                    'userPro' => [
+                        0,
+                    ],
+                    'isStatus' => [
+                        1,
+                    ],
+                ],
+            ],
+        ],
+        'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+            '_sqlStatements' => [
+                1 => 'SELECT a0_.id AS id_0, a0_.body AS body_1, a0_.is_status AS is_status_2, a0_.is_reported AS is_reported_3, a0_.created_at AS created_at_4, a0_.user_author_id AS user_author_id_5, a0_.user_pro_id AS user_pro_id_6 FROM advice a0_ WHERE a0_.user_pro_id = ? AND a0_.is_status = ? ORDER BY a0_.created_at DESC',
+            ],
+        ],
+        'stdClass' => [
+            'aliasMap' => [
+                2 => [
+                    'a' => 'App\\Entity\\Advice',
+                ],
+            ],
+            'fieldMappings' => [
+                2 => [
+                    'id_0' => 'id',
+                    'body_1' => 'body',
+                    'is_status_2' => 'isStatus',
+                    'is_reported_3' => 'isReported',
+                    'created_at_4' => 'createdAt',
+                ],
+            ],
+            'typeMappings' => [
+                2 => [
+                    'user_author_id_5' => 'integer',
+                    'user_pro_id_6' => 'integer',
+                ],
+            ],
+            'entityMappings' => [
+                2 => [
+                    'a' => null,
+                ],
+            ],
+            'metaMappings' => [
+                2 => [
+                    'user_author_id_5' => 'user_author_id',
+                    'user_pro_id_6' => 'user_pro_id',
+                ],
+            ],
+            'columnOwnerMap' => [
+                2 => [
+                    'id_0' => 'a',
+                    'body_1' => 'a',
+                    'is_status_2' => 'a',
+                    'is_reported_3' => 'a',
+                    'created_at_4' => 'a',
+                    'user_author_id_5' => 'a',
+                    'user_pro_id_6' => 'a',
+                ],
+            ],
+            'declaringClasses' => [
+                2 => [
+                    'id_0' => 'App\\Entity\\Advice',
+                    'body_1' => 'App\\Entity\\Advice',
+                    'is_status_2' => 'App\\Entity\\Advice',
+                    'is_reported_3' => 'App\\Entity\\Advice',
+                    'created_at_4' => 'App\\Entity\\Advice',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);
