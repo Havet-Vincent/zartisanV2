@@ -21,13 +21,13 @@
 
 __SCRUM methodology :__ 4 sprints.
 
-### Technology Front-End
+### Technologies Front-End
 
 * React
 * Redux
 * Ant Design
 
-### Technology Back-End
+### Technologies Back-End
 
 * Symfony 4.3
 * composer
