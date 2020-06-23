@@ -5,7 +5,7 @@
 
 # ZartisanV2
 
-![made-with-react](https://img.shields.io/badge/Made_with-React_/Redux-orange?style=flat)  ![made-with-symfony](https://img.shields.io/badge/Made_with-Symfony_4.3-blue?style=flat)  ![GitHub release](https://img.shields.io/badge/version-2.0.0-lightgrey?style=flat)  ![GitHub contributors](https://img.shields.io/badge/Contributeurs-5-success?style=flat)
+![made-with-react](https://img.shields.io/badge/Made_with-React_/Redux-orange?style=flat)  ![made-with-symfony](https://img.shields.io/badge/Made_with-Symfony_4.3-blue?style=flat)  ![GitHub release](https://img.shields.io/badge/version-2.0.0-lightgrey?style=flat)  ![GitHub contributors](https://img.shields.io/badge/Contributors-5-success?style=flat)
 
 # End-of-study project at O'Clock V2
 
